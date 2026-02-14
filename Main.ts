@@ -100,7 +100,7 @@ class Main{
             console.log("3. Search Contact by PhoneNo");
             console.log("--------------------------------------------");
 
-            const choice = await input("Choose a option - ");
+            const choice = await input("Choose a option (1-3) - ");
             
             if(choice === "1"){
                 const name = await input("Enter name - ");
@@ -164,7 +164,7 @@ class Main{
             console.log("4. Update Contact's LastName");
             console.log("--------------------------------------------");
 
-            const choice = await input("Choose a option - ");
+            const choice = await input("Choose a option (1-4) - ");
 
             if(choice === "1"){
                 const id = await input("Enter id - ");
@@ -222,7 +222,7 @@ class Main{
             console.log("6. Exit");
             console.log("--------------------------------------------");
 
-            const choice = await input("Choose a option - ");
+            const choice = await input("Choose a option (1-6) - ");
 
             if(choice === "1"){
                 await this.addContact();

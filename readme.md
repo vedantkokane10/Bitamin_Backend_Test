@@ -46,7 +46,7 @@ You will be presented with an interactive menu:
 5. Update Contact
 6. Exit
 --------------------------------------------
-Choose a option -
+Choose a option (1-6) -
 ```
 
 
