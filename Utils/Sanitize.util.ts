@@ -37,10 +37,18 @@ export default class Sanitize{
     }
 
     sanitizeCountryCode(countryCode : string): string{
-        if(countryCode === undefined){
+        if(countryCode === undefined || countryCode === ""){
             throw new ValidationError("Not a valid countryCode");
         }
         countryCode = countryCode.trim();
+        if (!countryCode.startsWith("+")) {
+            throw new ValidationError("Country code must start with '+'");
+        }
+        const digits = countryCode.slice(1);
+        let digitsRegex = /^\d{1,3}$/;
+        if (!digitsRegex.test(digits)) {
+            throw new ValidationError("Country code must have 1-3 digits after '+'");
+        }
         return countryCode;
     }
 };
