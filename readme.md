@@ -1,8 +1,7 @@
 # 📒 Phonebook CLI Application
 
-A command-line phonebook application built with **TypeScript** and **Node.js** that supports full contact management — add, update, delete, search, and paginated viewing.
+A command-line phonebook application built with **TypeScript** and **Node.js** that supports full contact management - add, update, delete, search, and paginated viewing.
 
----
 
 ## 🛠 Tech Stack
 
@@ -12,9 +11,8 @@ A command-line phonebook application built with **TypeScript** and **Node.js** t
 | **Storage** | JSON file-based persistence |
 | **Architecture** | Layered (Service + Storage + CLI) |
 
-> No frameworks were used. The only runtime dependency on Node.js is the built-in `fs` module, required for reading and writing the JSON data file. Everything else — routing logic, validation, error handling — is implemented from scratch in pure TypeScript.
+> No frameworks were used. The only runtime dependency on Node.js is the built-in `fs` module, required for reading and writing the JSON data file. Everything else - routing logic, validation, error handling - is implemented from scratch in pure TypeScript.
 
----
 
 ## Getting Started
 
@@ -51,17 +49,15 @@ You will be presented with an interactive menu:
 Choose a option -
 ```
 
----
 
 ## Features
 
-- **Add Contact** — Store a contact with country code, phone number, first name, and optionally last name and email.
-- **Fetch Contacts** — Browse all contacts with paginated navigation (next/previous pages).
-- **Search Contact** — Look up a contact by name, ID, or phone number.
-- **Update Contact** — Modify a contact's phone number, email, first name, or last name individually.
-- **Delete Contact** — Remove a contact by ID.
+- **Add Contact** - Store a contact with country code, phone number, first name, and optionally last name and email.
+- **Fetch Contacts** - Browse all contacts with paginated navigation (next/previous pages).
+- **Search Contact** - Look up a contact by name, ID, or phone number.
+- **Update Contact** - Modify a contact's phone number, email, first name, or last name individually.
+- **Delete Contact** - Remove a contact by ID.
 
----
 
 ## Project Structure
 
@@ -83,7 +79,6 @@ Choose a option -
 └── package-lock.json
 ```
 
----
 
 ## Data Storage
 
@@ -106,13 +101,12 @@ Each contact has the following shape:
 
 `lastName` and `email` are optional fields. `updatedAt` is only set when the contact is modified.
 
----
 
 ## Key Design Decisions
 
 ### Layered Architecture
 
-The codebase is split into clear layers — `Main.ts` handles user I/O, `PhoneBookService` owns all business logic, `FileStorage` abstracts persistence, and `Sanitize` handles input validation. This keeps each layer independently testable and easy to extend.
+The codebase is split into clear layers - `Main.ts` handles user I/O, `PhoneBookService` owns all business logic, `FileStorage` abstracts persistence, and `Sanitize` handles input validation. This keeps each layer independently testable and easy to extend.
 
 ### Input Sanitization
 
@@ -134,12 +128,11 @@ IDs are auto-incremented integers. On startup, the service reads the current max
 
 `fetchContacts` accepts a `page` and `offset` parameter and returns a `PaginatedResponse` with computed `next` and `previous` page numbers. By default, `page` starts at `1` and `offset` is set to `5` contacts per page. This keeps large contact lists navigable in the terminal.
 
----
 
 ## Assumptions
 
 - Phone number uniqueness is enforced across the entire phonebook (two contacts cannot share the same number, regardless of country code).
-- `lastName` and `email` are truly optional — the application accepts empty strings for these fields during contact creation.
+- `lastName` and `email` are truly optional - the application accepts empty strings for these fields during contact creation.
 - The `data.json` file is created and managed automatically; no manual setup is required.
 - Names are stored in lowercase for consistency and case-insensitive searching.
 - No authentication or multi-user support is in scope.
