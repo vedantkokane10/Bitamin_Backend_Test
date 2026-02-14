@@ -1,58 +1,46 @@
+import {ValidationError, NotFoundError, ConflictError} from './Errors.util.ts';
+
+
 export default class Sanitize{
     sanitizeEmail(email: string): string{
-        try {
-            if(!email.includes("@") || !email.includes(".com")){
-                throw new Error("Not a valid email");
-            }
-            email = email.trim();
-            email = email.toLowerCase();
-            return email;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            throw new ValidationError("Invalid email");
         }
-        catch (error) {
-            console.log("Error while sanitizing email, error:", error);
-            return "";
-        }
+        email = email.trim();
+        email = email.toLowerCase();
+        return email;
     }
 
     sanitizePhoneNo(phoneNo: string): string{
-        try {
-            phoneNo = phoneNo.trim();
-            phoneNo = phoneNo.replace(/\s+/g, "")
-            phoneNo = phoneNo.replace(/-/g, "")
-            return phoneNo;
+        if (!phoneNo) {
+            throw new ValidationError("Phone number is required");
         }
-        catch (error) {
-            console.log("Error while sanitizing phoneNo, error:", error);
-            return "";
+        phoneNo = phoneNo.trim();
+        phoneNo = phoneNo.replace(/\s+/g, "")
+        phoneNo = phoneNo.replace(/-/g, "")
+        if (phoneNo.length < 5) {
+            throw new ValidationError("Invalid phone number");
         }
+        return phoneNo;
+       
     }
 
     sanitizeName(name: string): string{
-        try {
-            if(name === undefined){
-                throw new Error("Not a valid name");
-            }
-            name = name.trim();
-            name = name.toLowerCase();
-            return name;
+        if(name === undefined){
+            throw new ValidationError("Not a valid name");
         }
-        catch (error) {
-            console.log("Error while sanitizing name, error:", error);
-            return "";
-        }
+        name = name.trim();
+        name = name.toLowerCase();
+        return name;
+        
     }
 
     sanitizeCountryCode(countryCode : string): string{
-        try {
-            if(countryCode === undefined){
-                throw new Error("Not a valid countrycode");
-            }
-            countryCode = countryCode.trim();
-            return countryCode;
+        if(countryCode === undefined){
+            throw new ValidationError("Not a valid countryCode");
         }
-        catch (error) {
-            console.log("Error while sanitizing countrycode, error:", error);
-            return "";
-        }
+        countryCode = countryCode.trim();
+        return countryCode;
     }
 };

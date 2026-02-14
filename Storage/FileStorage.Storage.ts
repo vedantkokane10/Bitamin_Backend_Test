@@ -1,15 +1,21 @@
-import Contact from '../Models/Contact.model';
+import type Contact from '../Models/Contact.model.ts';
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default class FileStorage{
 
-    private filePath: string = "../Data/data.json";
+    
+    private filePath = path.join(__dirname, "../Data/data.json");
+
 
     public loadContacts(): Contact[] {
         try {
-            if(!fs.existsSync(this.filePath)){
-                throw new Error("Data.json file not found");
+            if (!fs.existsSync(this.filePath)) {
                 return [];
             }
 
