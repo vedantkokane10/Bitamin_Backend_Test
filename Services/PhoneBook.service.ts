@@ -36,7 +36,7 @@ export default class PhoneBookService{
     
         let santiziedFirstName:string = this.sanitizer.sanitizeName(firstName); 
         let santiziedLastName:string | undefined; 
-        if(lastName !== undefined){
+        if(lastName !== ""){
             santiziedLastName = this.sanitizer.sanitizeName(lastName);  
         }
         let createdAt:Date = new Date();

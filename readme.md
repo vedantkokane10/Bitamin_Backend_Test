@@ -128,6 +128,10 @@ IDs are auto-incremented integers. On startup, the service reads the current max
 
 `fetchContacts` accepts a `page` and `offset` parameter and returns a `PaginatedResponse` with computed `next` and `previous` page numbers. By default, `page` starts at `1` and `offset` is set to `5` contacts per page. This keeps large contact lists navigable in the terminal.
 
+The response dynamically shows only relevant navigation options - `next` is shown only if 
+a further page exists, and `previous` is shown only if the user is past page 1. This keeps 
+the navigation clean and avoids invalid page jumps. Contacts are sliced from the in-memory 
+array using `startIndex` and `endIndex` derived from the page and offset values.
 
 ## Assumptions
 

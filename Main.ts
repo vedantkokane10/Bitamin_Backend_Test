@@ -68,10 +68,10 @@ class Main{
                 choice = await input(`${statement} - `);
                 
                 
-                if(choice === "next" && result.next !== -1){
+                if(choice.includes("next") && result.next !== -1){
                     page = result.next;
                 }
-                else if(choice === "previous" && result.previous !== -1){
+                else if(choice.includes("previous") && result.previous !== -1){
                     page = result.previous;
                 }
                 else if(choice === "exit"){
